@@ -1,0 +1,108 @@
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.headerPost {
+  padding: .5em;
+  background-color: #bfbfbf;
+  position: sticky;
+  top: 10px;
+  font-size: x-large;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+.navPost {
+  margin-top: 5px;
+  display: flex;
+}
+
+.navPost a {
+    padding: 10px 15px;
+    text-align: center;
+    display: block;
+    color: #34495e;
+    font-size: .99em;
+}
+
+.navPost a:hover {
+  color: white;
+  background-color: #1f477d;
+}
+
+a {
+    color: #34495e;
+    text-decoration: none;
+}
+
+
+.logoPost {
+  position: relative;
+  float: right;
+}
+
+.contentPost {
+  position: relative;
+  background-color: #d8d8d8;
+  top: 80px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 auto;
+  width: 600px;
+  height: 450px;
+  border-radius: 5px;
+  font-size: x-large;
+}
+
+.boxPost {
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.textareaPost {
+  width: 80%;
+  position: relative;
+  height: 100px;
+  resize: vertical;
+  max-height: 200px;
+  min-height: 100px;
+}
+
+.filePickerPost {
+  position: absolute;
+  text-align: left;
+  left: 20%;
+}
+
+.formTitlePost {
+  width: 15%;
+  position: relative;
+  text-align: right;
+}
+
+a.button {
+  padding: 10px 15px;
+  position: absolute;
+  justify-content: center;
+  left: 50%;
+  bottom: -0px;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: #1f477d;
+  font-size: large;
+  cursor: pointer;
+  border: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
