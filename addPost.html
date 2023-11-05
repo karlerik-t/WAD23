@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="src/js/script.js"></script>
     <link rel="stylesheet" href="res/css/style.css">
     <title>Post</title>
   </head>
@@ -13,7 +14,14 @@
       <div class="buttons">
         <a href="index.html">Home</a>
       </div>
-      <img src="res/images/avatar.jpg" width="40" height="40">
+      <div class="dropdown">
+        <button onclick="show_hide()" class="dropbutton"><img src="res/images/avatar.jpg" width="40" height="40"></button>
+        <ul id="dropdown-list" class="dropdown-content">
+           <li> John Doe </li>
+           <li> john.doe@ut.ee </li>
+           <li> logout </li>
+        </ul>
+      </div>
     </header>
 
     <div class="contentPost">

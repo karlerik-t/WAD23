@@ -1,5 +1,6 @@
 window.onload = function() {
 
+    
     // task 3 & 4
     // fetch('https://raw.githubusercontent.com/karlerik-t/WAD23/main/res/json/posts.json') 
 
@@ -70,4 +71,11 @@ window.onload = function() {
         })
         .finally(() => {
         })
+
+
 }
+
+//task 7
+function show_hide() {
+  document.getElementById("dropdown-list").classList.toggle("show");
+};
