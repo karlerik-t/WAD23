@@ -1,5 +1,9 @@
 window.onload = function() {
 
+    // task 3 & 4
+    // fetch('https://raw.githubusercontent.com/karlerik-t/WAD23/main/res/json/posts.json') 
+
+    // task 5
     fetch('./res/json/posts.json')
         .then((response) => response.json())
         .then(json => {
