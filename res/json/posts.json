@@ -1,0 +1,34 @@
+[
+  {
+    "uploadedFile": "res/images/tasks.png",
+    "fileType": "img",
+    "authorName": "Anon",
+    "authorAvatar": "res/images/avatar.jpg",
+    "content": null,
+    "date": "Oct 11, 2023"
+  },
+  {
+    "uploadedFile": "res/images/tartu2024.jpg",
+    "fileType": "img",
+    "authorName": "Anon",
+    "authorAvatar": "res/images/avatar.jpg",
+    "content": "Tartu 2023",
+    "date": "Oct 8, 2023"
+  },
+  {
+    "uploadedFile": null,
+    "fileType": null,
+    "authorName": "Anon",
+    "authorAvatar": "res/images/avatar.jpg",
+    "content": "Anyone knows in which room the lab is in today?",
+    "date": "Oct 5, 2023"
+  },
+  {
+    "uploadedFile": null,
+    "fileType": null,
+    "authorName": "Anon",
+    "authorAvatar": "res/images/avatar.jpg",
+    "content": "first",
+    "date": "Oct 2, 2023"
+  }
+]
