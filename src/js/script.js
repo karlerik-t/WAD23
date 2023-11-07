@@ -1,5 +1,5 @@
 window.onload = function() {
-
+    // task2: https://jsonlint.com/ 
     
     // task 3 & 4
     // fetch('https://raw.githubusercontent.com/karlerik-t/WAD23/main/res/json/posts.json') 

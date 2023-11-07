@@ -1,7 +1,4 @@
 [
-  // online JSON validator:
-  // https://jsonlint.com/ 
-  
   {
     "uploadedFile": null,
     "fileType": null,
