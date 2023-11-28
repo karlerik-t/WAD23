@@ -1,19 +1,14 @@
 <template>
-  <div class="parent">
-    <div class="child">
-      <div>
-        <p>Welcome to PostIt!</p>
-      </div>
-      <br />
-      <div>
-        <p id="text">Create an account<br />or<br />Please log in</p>
-      </div>
-      <br />
-      <form @submit="validatePasswd">
-        <div>
+<div class="container">
+  <div class="form">
+    <form @submit="validatePasswd">
+    <div class="form-group">
+          <label for="email">Email</label>
           <input type="text" name="email" placeholder="Email" required />
-        </div>
-        <br />
+    </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
         <input
           type="password"
           id="passwd"
@@ -23,12 +18,14 @@
           minlength="8"
           maxlength="14"
           required
-        /><br />
-        <div>
-          <button type="submit">Login</button>
+        />
         </div>
+
+        <div>
+          <button type="submit">SIGNUP</button>
+        </div>
+
       </form>
-      <div><p id="text">Forget password</p></div>
     </div>
   </div>
 </template>
@@ -66,25 +63,52 @@ export default {
 </script>
     
 <style>
-.parent {
+
+.container {
   display: flex;
-  margin: auto;
-  width: 300px;
-  height: 400px;
-  background: #d8d8d8;
   justify-content: center;
-  border-radius: 25px;
+  align-items: center;
+  height: 80vh;
 }
 
-.child {
-  background-color: rgba(148, 186, 230, 0);
-  width: 250px;
+.form {
+  display: flex;
+  width: 400px;
   height: 300px;
-  margin-top: 50px;
-  text-align: center;
+  background: #99e6ff;
   justify-content: center;
+  border-radius: 50px;
+  border: 4px solid #00ace6;
+
+}
+
+.form-group{
+  display: flex;
+  margin-top: 40px;
+  margin-bottom: 30px;
   font-size: medium;
-  overflow: hidden;
-  font-family: Tahoma;
+  font-weight: bold;
+  
+}
+
+button {
+  padding: 15px;
+  background-color: #1ab2ff;
+  color: #000000;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+label {
+  text-align: right;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  width: 80px;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 </style>

@@ -67,6 +67,7 @@ section {
   display: flex;
   align-items: center;
   margin-top: 10px;
+  font-weight: bold;
 }
 
 button {
