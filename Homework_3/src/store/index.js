@@ -5,14 +5,17 @@ export default createStore({
     
       Posts: [
         {
+          id:1,
           uploadedFile: null,
           fileType: null,
           authorName: "Anon",
           authorAvatar: "avatar.jpg",
           content: "I can't to find the WAD projects's instructions, can anybody help me?",
-          date: "Nov 5, 2023"
+          date: "Nov 5, 2023",
+    
         },
         {
+          id:2,
           uploadedFile: null,
           fileType: null,
           authorName: "Anon",
@@ -21,6 +24,7 @@ export default createStore({
           date: "Nov 1, 2023"
         },
         {
+          id:3,
           uploadedFile: "tartu.jpeg",
           fileType: "img",
           authorName: "Anon",
@@ -29,6 +33,7 @@ export default createStore({
           date: "Oct 30, 2023"
         },
         {
+          id:4,
           uploadedFile: null,
           fileType: null,
           authorName: "Anon",
@@ -37,6 +42,7 @@ export default createStore({
           date: "Oct 27, 2023"
         },
         {
+          id:5,
           uploadedFile: "Deltabuilding.jpeg",
           fileType: "img",
           authorName: "Anon",
@@ -45,6 +51,7 @@ export default createStore({
           date: "Oct 23, 2023"
         },
         {
+          id:6,
           uploadedFile: null,
           fileType: null,
           authorName: "Anon",
@@ -53,6 +60,7 @@ export default createStore({
           date: "Oct 17, 2023"
         },
         {
+          id:7,
           uploadedFile: null,
           fileType: null,
           authorName: "Anon",
@@ -61,6 +69,7 @@ export default createStore({
           date: "Oct 11, 2023"
         },
         {
+          id:8,
           uploadedFile: "tartu2024.jpg",
           fileType: "img",
           authorName: "Anon",
@@ -69,6 +78,7 @@ export default createStore({
           date: "Oct 8, 2023"
         },
         {
+          id:9,
           uploadedFile: null,
           fileType: null,
           authorName: "Anon",
@@ -77,6 +87,7 @@ export default createStore({
           date: "Oct 5, 2023"
         },
         {
+          id:10,
           uploadedFile: null,
           fileType: null,
           authorName: "Anon",
@@ -93,9 +104,24 @@ export default createStore({
   }
   },
   mutations: {
+    incrementLikes(state, postID) {
+      const post = state.Posts.find((p) => p.id === postID);
+    if (post) {
+      post.likes = (post.likes || 0) + 1;
+  }
+},
+resetLikes(state) {
+  // Reset likes to 0 for all posts
+  state.Posts.forEach((post) => {
+    post.likes = 0;
+  });
+},
   },
   actions: {
-  },
+    incrementLikes({ commit }, postID) {
+      commit('incrementLikes', postID);
+    },
+},
   modules: {
   }
 })

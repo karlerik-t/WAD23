@@ -10,18 +10,28 @@
                 <div v-if="postdata.uploadedFile !== null">
                     <img :src="require(`../assets/${postdata.uploadedFile}`)" style="max-width: 580px; max-height: 1000px;">
                 </div>
-                
                 <p>{{postdata.content}}</p>
             </div>
+            <div class="like-section">
+            <button @click="likePost">
             <img src="../assets/thumbs-up.svg" width="20" height="20">
+            </button>
+            <span>{{ postdata.likes || 0 }} Likes</span>
+            </div>
         </section>
 </template>
 
 <script>
 export default {
     name: "Post",
-    props: ["postdata"]
-}
+    props: ["postdata"],
+    methods: {
+    likePost() {
+      // Assuming you have a Vuex store mutation to handle likes
+      this.$store.commit("incrementLikes", this.postdata.id);
+    },
+    },
+};
 </script>
 
 <style>
@@ -52,4 +62,17 @@ section {
 .postbody img, table, iframe {
   align-self: center;
 }
+
+.like-section {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 </style>
