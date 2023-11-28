@@ -13,10 +13,10 @@
                 <p>{{postdata.content}}</p>
             </div>
             <div class="like-section">
-            <button @click="likePost">
-            <img src="../assets/thumbs-up.svg" width="20" height="20">
-            </button>
-            <span>{{ postdata.likes || 0 }} Likes</span>
+              <button @click="likePost">
+                <img src="../assets/thumbs-up.svg" width="20" height="20">
+              </button>
+              <span>{{ postdata.likes || 0 }} Likes</span>
             </div>
         </section>
 </template>
@@ -65,6 +65,7 @@ section {
 
 .like-section {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 10px;
   font-weight: bold;

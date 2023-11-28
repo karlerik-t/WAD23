@@ -6,11 +6,11 @@
     <div>
     <Post v-for="(post, index) in getPosts" :key="index" :postdata="post" :postIndex="index" />
   </div>
-  <section>
+  
   <div class="reset-likes-section">
      <button @click="resetLikes">Reset Likes</button>
-   </div>
-   </section>
+  </div>
+  
   </div>
 </template>
 
@@ -36,10 +36,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .posts {
   display: flex;
   flex-direction: column;  
   width: 600px;
+}
+
+button {
+  padding: 15px;
+  background-color: #1ab2ff;
+  color: #000000;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
 }
 </style>
