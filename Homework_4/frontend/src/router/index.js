@@ -1,5 +1,6 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import APostView from "../views/APostView.vue";
 import ContactUsView from '../views/ContactUsView.vue'
 import LoginView from '../views/LoginView.vue'
 import auth from "../auth";
@@ -33,6 +34,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue')
   },
   {
+    path: "/apostview/:id",
+    name: "apostview",
+    component: () => import(/* webpackChunkName: "about" */ '../views/APostView.vue'),
+    beforeEnter: async (to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+        next('/loginview')
+      } else {
+        next();
+      }
+    }
+},
+  {
     path: '/contactusview',
     name: 'contactusview',
     // route level code-splitting
@@ -43,7 +57,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 

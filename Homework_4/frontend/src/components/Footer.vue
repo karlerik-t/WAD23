@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-      <p>© Authors: Group H, November 2023</p>
+      <p>© Authors: Group H, December 2023</p>
     </footer>
 </template>
 

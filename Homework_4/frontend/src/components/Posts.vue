@@ -1,15 +1,18 @@
 <template>
   <div class="posts">
-    <div v-for="post in Posts"   :key="post.index">
-      <Post :postdata="post"/>
+    <div class="container">
+      <button   @click="Logout" class="center">Logout</button>
     </div>
-    <div>
-    <Post v-for="(post, index) in getPosts" :key="index" :postdata="post" :postIndex="index" />
-  </div>
-  
-  <div class="reset-likes-section">
-     <button @click="resetLikes">Reset Likes</button>
-  </div>
+    <div v-for="row in posts" :key="row.id">
+      <a class= 'singlepost' :href="'/apostview/' + row.id">
+        <Post :content="row.content" :date="row.date"/>
+      </a>
+      
+    </div>
+    <div class="container">
+        <button @click="updatePost" class="updatePost">Add post</button>
+        <button @click="deletePost" class="deletePost">Delete all</button>
+    </div>
   
   </div>
 </template>
@@ -20,18 +23,27 @@ import Post from '@/components/Post.vue'
 
 export default {
   name: 'Posts',
+  data() {
+    return {
+      posts: [],
+    };
+  },
   components: {
     Post,
   },
-  computed: {
-    Posts(){
-      return this.$store.state.Posts
+  methods: {
+    fetchPosts(){
+      fetch(`http://localhost:3000/api/posts/`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.posts = data;
+        })
+        .catch((err) => console.log(err.message));
     },
   },
-  methods: {
-  resetLikes() {
-      this.$store.commit('resetLikes');
-    },
+  mounted() {
+    this.fetchPosts();
+    console.log("mounted");
   },
 };
 </script>

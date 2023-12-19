@@ -1,10 +1,10 @@
 <template>
 <div class="container">
   <div class="form">
-    <form @submit="validatePasswd">
+    <form @submit="Login">
     <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" name="email" placeholder="Email" required />
+          <input type="text" id="email" name="email" placeholder="Email" required />
     </div>
 
       <div class="form-group">
@@ -37,28 +37,30 @@ export default {
   name: "LoginForm",
 
   methods: {
-    validatePasswd: function (e) {
+    Login(email, passwd) {
       var passwd = document.getElementById("passwd").value;
-
-      var regexNumber = /\d+/.test(passwd);
-      // Since the first letter has to be uppercase, there is no need for an additional uppercase character check
-      var regexFirstUppercase = /^[A-Z]/.test(passwd);
-      var regexTwoLowercase = /^(?=.*[a-z].*[a-z]).*$/.test(passwd);
-      var regexUnderscore = /_/g.test(passwd);
-
-      if (
-        regexNumber &&
-        regexFirstUppercase &&
-        regexTwoLowercase &&
-        regexUnderscore
-      ) {
+      var email = document.getElementById("email").value;
+      var data = {
+        email: email,
+        password: passwd
+      };
+      fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+          credentials: 'include', 
+          body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
         this.$router.push("/");
-      } else {
-        alert(
-          "Invalid password. Make sure that the following conditions are fulfilled:\n\n•Two lowercase characters\n•One numeric value\n•First character is an uppercase letter\n•Includes character '_'"
-        );
-        e.preventDefault();
-      }
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
     },
   },
 };

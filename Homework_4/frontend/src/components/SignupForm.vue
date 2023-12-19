@@ -1,10 +1,10 @@
 <template>
 <div class="container">
   <div class="form">
-    <form @submit="validatePasswd">
+    <form @submit="doSignup">
     <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" name="email" placeholder="Email" required />
+          <input type="text" id="email" name="email" placeholder="Email" required />
     </div>
 
       <div class="form-group">
@@ -35,8 +35,8 @@ export default {
   name: "SignupForm",
 
   methods: {
-    validatePasswd: function (e) {
-      var passwd = document.getElementById("passwd").value;
+
+    validatePasswd: function (passwd) {
 
       var regexNumber = /\d+/.test(passwd);
       // Since the first letter has to be uppercase, there is no need for an additional uppercase character check
@@ -50,7 +50,45 @@ export default {
         regexTwoLowercase &&
         regexUnderscore
       ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    SignUp(email, passwd) {
+      var data = {
+        email: email,
+        password: passwd
+      };
+      fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+          credentials: 'include', 
+          body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.error) {
+          alert(
+            data.error
+          );
+        }
         this.$router.push("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
+    },
+    doSignup: function (e) {
+      var passwd = document.getElementById("passwd").value;
+      var email = document.getElementById("email").value;
+      if (this.validatePasswd(passwd)) {
+        this.SignUp(email, passwd);
+
       } else {
         alert(
           "Invalid password. Make sure that the following conditions are fulfilled:\n\n•Two lowercase characters\n•One numeric value\n•First character is an uppercase letter\n•Includes character '_'"
