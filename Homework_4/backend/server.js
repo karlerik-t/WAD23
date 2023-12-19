@@ -26,7 +26,7 @@ app.listen(port, () => {
 });
 
 // is used to check whether a user is authenticated
-app.get('/auth/authenticate', async(req, res) => {
+app.get('/auth/authenticate', async (req, res) => {
     console.log('authentication request has been arrived');
     const token = req.cookies.jwt; // assign the token named jwt to the token const
     let authenticated = false; // a user is not authenticated until proven the opposite
@@ -54,7 +54,7 @@ app.get('/auth/authenticate', async(req, res) => {
 });
 
 // signup a user
-app.post('/auth/signup', async(req, res) => {
+app.post('/auth/signup', async (req, res) => {
     try {
         console.log("a signup request has arrived");
         console.log(req.body);
@@ -81,7 +81,7 @@ app.post('/auth/signup', async(req, res) => {
     }
 });
 
-app.post('/auth/login', async(req, res) => {
+app.post('/auth/login', async (req, res) => {
     try {
         console.log("a login request has arrived");
         const { email, password } = req.body;
@@ -113,7 +113,7 @@ app.post('/auth/login', async(req, res) => {
     }
 });
 
-app.get('/api/posts', async(req, res) => {
+app.get('/api/posts', async (req, res) => {
     try {
         console.log("get posts request has arrived");
         const posts = await pool.query(
@@ -125,7 +125,7 @@ app.get('/api/posts', async(req, res) => {
     }
 });
 
-app.get('/api/posts/:id', async(req, res) => {
+app.get('/api/posts/:id', async (req, res) => {
     try {
         console.log("get a post with route parameter request has arrived");
         const { id } = req.params;
@@ -138,13 +138,14 @@ app.get('/api/posts/:id', async(req, res) => {
     }
 });
 
-app.put('/api/posts/:id', async(req, res) => {
+app.put('/api/posts/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const post = req.body;
         console.log("update request has arrived");
+        console.log(post);
         const updatepost = await pool.query(
-            "UPDATE posts SET content = $2 WHERE id = $1 RETURNING*", [id, post.content]
+            "UPDATE posts SET content = $2, date = $3 WHERE id = $1 RETURNING*", [id, post.content, post.date]
         );
         res.json(updatepost);
     } catch (err) {
@@ -152,12 +153,40 @@ app.put('/api/posts/:id', async(req, res) => {
     }
 });
 
-app.delete('/api/posts/:id', async(req, res) => {
+app.post('/api/posts/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const post = req.body;
+        console.log("post request has arrived");
+        console.log(post);
+        const updatepost = await pool.query(
+            "INSERT INTO posts(content, date) values ($1, $2) RETURNING*", [post.content, post.date]
+        );
+        res.json(updatepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.delete('/api/posts/:id', async (req, res) => {
     try {
         const { id } = req.params;
         console.log("delete a post request has arrived");
         const deletepost = await pool.query(
             "DELETE FROM posts WHERE id = $1 RETURNING*", [id]
+        );
+        res.json(deletepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.delete('/api/posts/', async (req, res) => {
+    try {
+        const { id } = req.params;
+        console.log("a delete request has arrived");
+        const deletepost = await pool.query(
+            "DELETE FROM posts"
         );
         res.json(deletepost);
     } catch (err) {

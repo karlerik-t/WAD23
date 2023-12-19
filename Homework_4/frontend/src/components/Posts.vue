@@ -1,28 +1,26 @@
 <template>
   <div class="posts">
     <div class="container">
-      <button   @click="Logout" class="center">Logout</button>
+      <button @click="Logout" class="center">Logout</button>
     </div>
     <div v-for="row in posts" :key="row.id">
-      <a class= 'singlepost' :href="'/apostview/' + row.id">
-        <Post :content="row.content" :date="row.date"/>
+      <a class="singlepost" :href="'/apostview/' + row.id">
+        <Post :content="row.content" :date="row.date" />
       </a>
-      
     </div>
     <div class="container">
-        <button @click="updatePost" class="updatePost">Add post</button>
-        <button @click="deletePost" class="deletePost">Delete all</button>
+      <button @click="updatePost" class="updatePost">Add post</button>
+      <button @click="deletePosts" class="deletePost">Delete all</button>
     </div>
-  
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Post from '@/components/Post.vue'
+import Post from "@/components/Post.vue";
 
 export default {
-  name: 'Posts',
+  name: "Posts",
   data() {
     return {
       posts: [],
@@ -32,13 +30,26 @@ export default {
     Post,
   },
   methods: {
-    fetchPosts(){
+    fetchPosts() {
       fetch(`http://localhost:3000/api/posts/`)
         .then((response) => response.json())
         .then((data) => {
           this.posts = data;
         })
         .catch((err) => console.log(err.message));
+    },
+    deletePosts() {
+      fetch(`http://localhost:3000/api/posts/`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push("/");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
   mounted() {
@@ -51,7 +62,7 @@ export default {
 <style scoped>
 .posts {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   width: 600px;
 }
 
